@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a Bibi | 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #ffffff; 
+            color: #111111; 
+            overflow-x: hidden;
+        }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .img-frame {
+            position: relative;
+            overflow: hidden; 
+            background-color: #f3f3f3;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03 );
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .img-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            filter: saturate(1.02) brightness(1.01) contrast(1.02);
+            transition: transform 0.8s ease;
+        }
+
+        .img-frame:hover img {
+            transform: scale(1.03);
+        }
+
+        .img-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.02);
+            pointer-events: none;
+        }
+
+        .img-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .fade-in { animation: fadeIn 1.5s ease-out forwards; opacity: 0; }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(15px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .hero-line {
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, #000, transparent);
+            margin-top: 40px;
+        }
+
+        .video-wrapper {
+            background: #fff;
+            padding: 12px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Hero Section -->
+    <header class="h-screen flex flex-col items-center justify-center text-center px-6">
+        <div class="fade-in" style="animation-delay: 0.2s;">
+            <p class="uppercase tracking-[0.8em] text-[9px] mb-10 text-gray-400 font-bold">Com todo meu carinho</p>
+            <h1 class="text-8xl md:text-[12rem] font-serif mb-8 italic tracking-tighter text-black">Bibi</h1>
+            <div class="flex items-center justify-center gap-4 mb-8">
+                <span class="h-[1px] w-8 bg-black"></span>
+                <span class="text-xs uppercase tracking-[0.4em] font-light text-gray-500">2026</span>
+                <span class="h-[1px] w-8 bg-black"></span>
+            </div>
+            <p class="text-[11px] md:text-xs text-gray-400 max-w-[280px] mx-auto leading-relaxed tracking-widest uppercase">
+                Um lugar para guardar   
+nossos melhores momentos.
+            </p>
+            <div class="hero-line mx-auto"></div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-6xl mx-auto px-8 py-32">
+        
+        <!-- Frase Inspiradora antes das fotos -->
+        <div class="text-center mb-48 fade-in">
+            <p class="text-gray-400 text-[10px] uppercase tracking-[0.6em] mb-6">Fragmentos de uma história linda</p>
+            <h2 class="text-4xl md:text-5xl font-serif italic text-black leading-tight max-w-2xl mx-auto">
+                "A vida é feita de pequenos instantes que se tornam eternos ao seu lado."
+            </h2>
+            <div class="h-[1px] w-12 bg-gray-100 mx-auto mt-12"></div>
+        </div>
+
+        <!-- Foto 1 - Peixe e Mãe -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center mb-64">
+            <div class="md:col-span-7 fade-in">
+                <div class="img-frame">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285233411/ZGbtvwyaUIXScuMi.png" alt="Bibi pescando com a mãe">
+                </div>
+            </div>
+            <div class="md:col-span-5 fade-in" style="animation-delay: 0.3s;">
+                <h3 class="text-4xl font-serif mb-6 italic">Parceria</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light tracking-wide italic">
+                    "O melhor da vida é compartilhar essas aventuras bobas com quem a gente mais ama."
+                </p>
+            </div>
+        </div>
+
+        <!-- Foto 2 - Engraçada -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center mb-64 md:flex-row-reverse">
+            <div class="md:col-span-5 md:text-right order-2 md:order-1 fade-in">
+                <h3 class="text-4xl font-serif mb-6 italic">Mood</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light tracking-wide italic">
+                    "Dona da risada mais gostosa e das melhores caretas. Nunca mude esse seu jeito!"
+                </p>
+            </div>
+            <div class="md:col-span-7 order-1 md:order-2 fade-in">
+                <div class="img-frame">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285233411/ekKitQdxnzrwLQaq.png" alt="Bibi sendo engraçada">
+                </div>
+            </div>
+        </div>
+
+        <!-- Vídeo Section -->
+        <div class="my-64 flex flex-col items-center fade-in">
+            <div class="max-w-[340px] w-full video-wrapper rounded-sm">
+                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/ZSmjLdrYE/" data-video-id="ZSmjLdrYE" style="width: 100%;"> 
+                    <section> 
+                        <a target="_blank" href="https://vt.tiktok.com/ZSmjLdrYE/">Ver vídeo</a> 
+                    </section> 
+                </blockquote> 
+                <script async src="https://www.tiktok.com/embed.js"></script>
+            </div>
+        </div>
+
+        <!-- Foto 3 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center mb-64">
+            <div class="md:col-span-6 fade-in">
+                <div class="img-frame">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285233411/EkqnfAwTWYmpSZan.png" alt="Bibi com família">
+                </div>
+            </div>
+            <div class="md:col-span-6 md:pl-20 fade-in">
+                <h3 class="text-4xl font-serif mb-6 italic">Família</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light tracking-wide italic">
+                    "Onde a vida começa e o amor nunca termina. É o nosso porto seguro."
+                </p>
+            </div>
+        </div>
+
+        <!-- Foto 4 -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center mb-48">
+             <div class="md:col-span-5 md:text-right order-2 md:order-1 fade-in">
+                <h3 class="text-4xl font-serif mb-6 italic">Juntos</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light tracking-wide italic">
+                    "Cada momento ao seu lado é um presente que eu guardo com muito carinho."
+                </p>
+            </div>
+            <div class="md:col-span-7 order-1 md:order-2 fade-in">
+                <div class="img-frame">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285233411/llPzWGIxFKFuDVzF.png" alt="Bibi no Natal">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-48 px-6 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-xl mx-auto text-center fade-in">
+            <h4 class="font-serif text-5xl mb-12 italic tracking-tight text-black">Parabéns, Bibi.</h4>
+            <div class="space-y-6 text-gray-400 text-sm font-light leading-loose mb-20 px-4">
+                <p>"Que você nunca perca essa sua luz e que a gente continue celebrando a vida sempre assim, juntinhos."</p>
+                <div class="h-[1px] w-8 bg-gray-200 mx-auto"></div>
+                <p class="text-[11px] uppercase tracking-widest">Com todo meu amor, Renas</p>
+            </div>
+
+            <button onclick="festa( )" class="group relative inline-block text-[10px] uppercase tracking-[0.5em] font-bold py-6 px-12 transition-all duration-700 overflow-hidden">
+                <span class="relative z-10 group-hover:text-white">Celebrar você</span>
+                <div class="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out border border-black"></div>
+                <div class="absolute inset-0 border border-gray-200 group-hover:border-black transition-colors"></div>
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        function festa() {
+            const defaults = { origin: { y: 0.8 }, zIndex: 999 };
+            confetti({ ...defaults, particleCount: 150, spread: 80, colors: ['#000', '#f472b6', '#fff'] });
+        }
+        
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                confetti({
+                    particleCount: 30,
+                    spread: 40,
+                    origin: { y: 0.9 },
+                    colors: ['#000'],
+                    disableForReducedMotion: true
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
