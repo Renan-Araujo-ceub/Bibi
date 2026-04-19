@@ -3,133 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para a Bibi | 2026</title>
+    <title>BINA DAY! 🎂</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #111111; overflow-x: hidden; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        .img-frame { position: relative; overflow: hidden; background-color: #f3f3f3; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .img-frame img { width: 100%; height: auto; display: block; image-rendering: auto; filter: saturate(1.02) brightness(1.01) contrast(1.02); transition: transform 0.8s ease; }
-        .img-frame:hover img { transform: scale(1.03); }
-        .img-frame::after { content: ''; position: absolute; inset: 0; box-shadow: inset 0 0 80px rgba(0,0,0,0.02); pointer-events: none; }
-        .img-frame:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
-        .fade-in { animation: fadeIn 1.5s ease-out forwards; opacity: 0; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .hero-line { width: 1px; height: 100px; background: linear-gradient(to bottom, #000, transparent); margin-top: 40px; }
-        .video-wrapper { background: #fff; padding: 12px; border: 1px solid #f0f0f0; box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            margin: 0;
+        }
+        .font-huge { font-family: 'Unbounded', sans-serif; font-weight: 900; }
+        
+        .bg-neon-pink { background-color: #ff0055; }
+        .text-neon-pink { color: #ff0055; }
+        
+        /* Estilos da Capa (Splash Screen) */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out, visibility 1s;
+        }
+
+        .pulse-heart {
+            font-size: 80px;
+            color: #ff0055;
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+            filter: drop-shadow(0 0 15px #ff0055);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Estilo Mural de Fotos */
+        .sticker {
+            transform: rotate(var(--r));
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .sticker:hover {
+            transform: rotate(0deg) scale(1.08);
+            z-index: 50;
+            box-shadow: 0 25px 50px -12px rgba(255, 0, 85, 0.25);
+        }
+
+        .scroll-text {
+            white-space: nowrap;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .time-box {
+            background: #111;
+            border-bottom: 4px solid #ff0055;
+            padding: 2rem;
+            text-align: center;
+            min-width: 120px;
+            border-radius: 12px;
+        }
+
+        .pink-number {
+            color: #ff0055;
+        }
+
+        @media (max-width: 640px) {
+            .time-box {
+                padding: 1rem;
+                min-width: 85px;
+            }
+        }
+
+        .img-hd {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
     </style>
 </head>
-<body class="antialiased">
-    <header class="h-screen flex flex-col items-center justify-center text-center px-6">
-        <div class="fade-in" style="animation-delay: 0.2s;">
-            <p class="uppercase tracking-[0.8em] text-[9px] mb-10 text-gray-400 font-bold">Com todo meu carinho</p>
-            <h1 class="text-8xl md:text-[12rem] font-serif mb-8 italic tracking-tighter text-black">Bibi</h1>
-            <div class="flex items-center justify-center gap-4 mb-8">
-                <span class="h-[1px] w-8 bg-black"></span>
-                <span class="text-xs uppercase tracking-[0.4em] font-light text-gray-500">2026</span>
-                <span class="h-[1px] w-8 bg-black"></span>
-            </div>
-            <p class="text-[11px] md:text-xs text-gray-400 max-w-[280px] mx-auto leading-relaxed tracking-widest uppercase">Um lugar para guardar <br>nossos melhores momentos.</p>
-            <div class="hero-line mx-auto"></div>
-        </div>
-    </header>
+<body>
 
-    <main class="max-w-6xl mx-auto px-8 py-32">
-        <div class="text-center mb-48 fade-in">
-            <p class="text-gray-400 text-[10px] uppercase tracking-[0.6em] mb-6">Fragmentos de uma história linda</p>
-            <h2 class="text-4xl md:text-5xl font-serif italic text-black leading-tight max-w-2xl mx-auto">"A vida é feita de pequenos instantes que se tornam eternos ao seu lado."</h2>
-            <div class="h-[1px] w-12 bg-gray-100 mx-auto mt-12"></div>
-        </div>
-
-        <!-- Foto 1 -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center mb-64">
-            <div class="md:col-span-7 fade-in">
-                <div class="img-frame">
-                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285233411/ZGbtvwyaUIXScuMi.png" alt="Bibi pescando">
-                </div>
-            </div>
-            <div class="md:col-span-5 fade-in" style="animation-delay: 0.3s;">
-                <h3 class="text-4xl font-serif mb-6 italic">Parceria</h3>
-                <p class="text-gray-400 text-sm leading-relaxed font-light tracking-wide italic">"O melhor da vida é compartilhar essas aventuras bobas com quem a gente mais ama."</p>
-            </div>
-        </div>
-
-        <!-- Foto 2 -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center mb-64 md:flex-row-reverse">
-            <div class="md:col-span-5 md:text-right order-2 md:order-1 fade-in">
-                <h3 class="text-4xl font-serif mb-6 italic">Mood</h3>
-                <p class="text-gray-400 text-sm leading-relaxed font-light tracking-wide italic">"Dona da risada mais gostosa e das melhores caretas. Nunca mude esse seu jeito!"</p>
-            </div>
-            <div class="md:col-span-7 order-1 md:order-2 fade-in">
-                <div class="img-frame">
-                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285233411/ekKitQdxnzrwLQaq.png" alt="Bibi engraçada">
-                </div>
-            </div>
-        </div>
-
-        <!-- Vídeo -->
-        <div class="my-64 flex flex-col items-center fade-in">
-            <div class="max-w-[340px] w-full video-wrapper rounded-sm">
-                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/ZSmjLdrYE/" data-video-id="ZSmjLdrYE" style="width: 100%;"> 
-                    <section><a target="_blank" href="https://vt.tiktok.com/ZSmjLdrYE/">Ver vídeo</a></section> 
-                </blockquote> 
-                <script async src="https://www.tiktok.com/embed.js"></script>
-            </div>
-        </div>
-
-        <!-- Foto 3 (FOTO ORIGINAL DE NATAL/FAMÍLIA) -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center mb-64">
-            <div class="md:col-span-6 fade-in">
-                <div class="img-frame">
-                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285233411/NnTKnukpfRtfgiVY.jpeg" alt="Bibi com família">
-                </div>
-            </div>
-            <div class="md:col-span-6 md:pl-20 fade-in">
-                <h3 class="text-4xl font-serif mb-6 italic">Família</h3>
-                <p class="text-gray-400 text-sm leading-relaxed font-light tracking-wide italic">"Onde a vida começa e o amor nunca termina. É o nosso porto seguro."</p>
-            </div>
-        </div>
-
-        <!-- Foto 4 (FOTO ORIGINAL DE PIJAMA) -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-center mb-48">
-             <div class="md:col-span-5 md:text-right order-2 md:order-1 fade-in">
-                <h3 class="text-4xl font-serif mb-6 italic">Juntos</h3>
-                <p class="text-gray-400 text-sm leading-relaxed font-light tracking-wide italic">"Cada momento ao seu lado é um presente que eu guardo com muito carinho."</p>
-            </div>
-            <div class="md:col-span-7 order-1 md:order-2 fade-in">
-                <div class="img-frame">
-                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663285233411/viGqBvtVFWEwKIYH.jpeg" alt="Bibi de pijama">
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="py-48 px-6 bg-gray-50 border-t border-gray-100">
-        <div class="max-w-xl mx-auto text-center fade-in">
-            <h4 class="font-serif text-5xl mb-12 italic tracking-tight text-black">Parabéns, Bibi.</h4>
-            <div class="space-y-6 text-gray-400 text-sm font-light leading-loose mb-20 px-4">
-                <p>"Que você nunca perca essa sua luz e que a gente continue celebrando a vida sempre assim, juntinhos."</p>
-                <div class="h-[1px] w-8 bg-gray-200 mx-auto"></div>
-                <p class="text-[11px] uppercase tracking-widest">Com todo meu amor, Renas</p>
-            </div>
-            <button onclick="festa()" class="group relative inline-block text-[10px] uppercase tracking-[0.5em] font-bold py-6 px-12 transition-all duration-700 overflow-hidden">
-                <span class="relative z-10 group-hover:text-white">Celebrar você</span>
-                <div class="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out border border-black"></div>
-                <div class="absolute inset-0 border border-gray-200 group-hover:border-black transition-colors"></div>
+    <!-- CAPA DE ENTRADA -->
+    <div id="splash-screen">
+        <div class="pulse-heart" onclick="abrirPresente()">❤️</div>
+        <h2 class="font-huge text-white mt-8 text-center px-6 uppercase text-sm md:text-xl tracking-widest">
+            Para a melhor pessoa do mundo
+        </h2>
+        <div class="flex flex-col items-center gap-4">
+            <button onclick="abrirPresente()" class="mt-8 bg-neon-pink text-white font-huge px-8 py-4 rounded-full hover:scale-105 transition-transform uppercase text-xs">
+                Abrir Presente
             </button>
         </div>
-    </footer>
+    </div>
+
+    <!-- CONTEÚDO DO SITE -->
+    <div id="main-content">
+        <!-- BARRA DE TOPO -->
+        <div class="fixed top-0 w-full bg-neon-pink text-black py-3 z-50 overflow-hidden border-b-2 border-white">
+            <div class="scroll-text flex font-huge text-base uppercase">
+                <span>HAPPY BIRTHDAY BINA • O TEU DIA CHEGOU • 20 DE ABRIL • PARABÉNS BINA • FELIZ ANIVERSÁRIO • &nbsp;</span>
+                <span>HAPPY BIRTHDAY BINA • O TEU DIA CHEGOU • 20 DE ABRIL • PARABÉNS BINA • FELIZ ANIVERSÁRIO • &nbsp;</span>
+            </div>
+        </div>
+
+        <!-- HERO SECTION -->
+        <section class="min-h-[80vh] flex flex-col items-center justify-center pt-24 px-4 text-center">
+            <h1 class="font-huge text-8xl md:text-[12rem] uppercase leading-none mb-6">
+                BINA<span class="text-neon-pink">.</span>
+            </h1>
+            <p class="text-zinc-400 text-xl md:text-2xl uppercase tracking-[0.4em]">Onde a nossa história ganha vida</p>
+        </section>
+
+        <!-- CONTADOR -->
+        <section class="py-24 bg-white text-black text-center">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="font-huge text-4xl md:text-6xl mb-6 uppercase tracking-tighter">O tempo para quando estou contigo</h2>
+                <p class="text-zinc-500 mb-16 uppercase text-base tracking-widest">Desde aquele 20 de Abril de 2025</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div class="time-box">
+                        <span id="anos" class="font-huge text-5xl md:text-6xl block pink-number">00</span>
+                        <span class="text-xs font-bold uppercase text-zinc-500">Anos</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="meses" class="font-huge text-5xl md:text-6xl block pink-number">00</span>
+                        <span class="text-xs font-bold uppercase text-zinc-500">Meses</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="dias" class="font-huge text-5xl md:text-6xl block pink-number">00</span>
+                        <span class="text-xs font-bold uppercase text-zinc-500">Dias</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="horas" class="font-huge text-5xl md:text-6xl block pink-number">00</span>
+                        <span class="text-xs font-bold uppercase text-zinc-500">Horas</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutos" class="font-huge text-5xl md:text-6xl block pink-number">00</span>
+                        <span class="text-xs font-bold uppercase text-zinc-500">Minutos</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="segundos" class="font-huge text-5xl md:text-6xl block pink-number">00</span>
+                        <span class="text-xs font-bold uppercase text-zinc-500">Segundos</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MENSAGEM -->
+        <section class="py-40 px-6 bg-black">
+            <div class="max-w-5xl mx-auto text-center">
+                <div class="bg-zinc-900 border-2 border-zinc-700 p-10 md:p-20 relative">
+                    <div class="absolute top-0 right-10 bg-neon-pink text-white px-8 py-3 font-huge -translate-y-1/2 uppercase text-sm">De: Eu / Para: Bina</div>
+                    <div class="space-y-8 text-2xl md:text-3xl font-light leading-relaxed text-left">
+                        <p>Hoje é o teu dia, <span class="font-bold text-neon-pink uppercase">Bina</span>…</p>
+                        <p>E eu queria conseguir colocar em palavras tudo o que mereces, mas a verdade é que é difícil. És muito especial para mim, de um jeito que vai além de qualquer texto.</p>
+                        <p>Fico a pensar em tudo o que já me disseste sobre mim… que sou carinhoso, legal, importante para ti, que te trago segurança… e, sinceramente, isso significa muito para mim. Porque vindo de ti, tem um peso diferente. Faz-me querer ser ainda melhor, estar mais presente e cuidar de ti do jeito que mereces.</p>
+                        <p class="border-l-4 border-neon-pink pl-8 py-6 italic text-zinc-400">
+                            Mas hoje não é sobre mim, é sobre ti. Sobre a pessoa incrível que és, sobre o jeito que iluminas tudo, sobre como consegues ser tão única. Eu admiro muito quem tu és, de verdade.
+                        </p>
+                        <p>Só quero que este novo ciclo te traga paz, felicidade de verdade, conquistas e muitos momentos bons. E que nunca esqueças o quanto és importante.</p>
+                    </div>
+                    <div class="mt-16 flex flex-col md:flex-row items-center justify-center gap-8">
+                        <span class="font-huge text-4xl uppercase italic">Love you</span>
+                        <button onclick="festa()" class="bg-white text-black font-huge px-10 py-5 hover:bg-neon-pink hover:text-white transition-all uppercase text-base border-2 border-transparent hover:border-white">
+                            Lançar Confetes! 🎉
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERIA DE FOTOS ATUALIZADA -->
+        <section class="py-32 bg-zinc-100 text-black overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="font-huge text-6xl mb-24 text-center uppercase tracking-tighter italic">Nossa Galeria</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-16 items-center justify-items-center">
+                    
+                    <!-- Foto Principal (Nós - ATUALIZADA) -->
+                    <div class="sticker bg-white p-4 shadow-2xl border border-zinc-200 inline-block" style="--r: -2deg">
+                        <img src="https://www.image2url.com/r2/default/images/1776629325212-d81e452d-8d14-4ec1-9999-157423eb8e48.jpeg" 
+                             class="w-full max-w-[450px] h-auto object-contain img-hd" 
+                             alt="Eu e Ela">
+                        <p class="mt-4 font-bold uppercase text-center text-xs tracking-[0.2em] italic">Onde tudo faz sentido e eu encontro paz...</p>
+                    </div>
+
+                    <!-- Só Ela -->
+                    <div class="sticker bg-white p-4 shadow-2xl border border-zinc-200 inline-block" style="--r: 3deg">
+                        <img src="https://www.image2url.com/r2/default/images/1776628797596-57835395-d1b2-454d-9ab9-cad0e1ee1edb.jpeg" 
+                             class="w-full max-w-[450px] h-auto object-contain img-hd" 
+                             alt="Bina">
+                        <p class="mt-4 font-bold uppercase text-center text-xs tracking-[0.2em] italic">O brilho da lua... não chega nem perto do seu brilho</p>
+                    </div>
+
+                    <!-- Ela e a Irmã -->
+                    <div class="sticker bg-white p-4 shadow-2xl border border-zinc-200 inline-block" style="--r: -3deg">
+                        <img src="https://www.image2url.com/r2/default/images/1776628874820-82b5c040-0b88-4b8a-ad3e-94d99de3ffe8.jpeg" 
+                             class="w-full max-w-[450px] h-auto object-contain img-hd" 
+                             alt="Bina e Irmã">
+                        <p class="mt-4 font-bold uppercase text-center text-xs tracking-[0.2em] italic">Cumplicidade que o tempo só fortalece</p>
+                    </div>
+
+                    <!-- Ela e a Irmã Perto -->
+                    <div class="sticker bg-white p-4 shadow-2xl border border-zinc-200 inline-block" style="--r: 2deg">
+                        <img src="https://www.image2url.com/r2/default/images/1776628931544-30020344-76d8-4659-96be-b83a30133fbe.jpeg" 
+                             class="w-full max-w-[450px] h-auto object-contain img-hd" 
+                             alt="Bina e Irmã Perto">
+                        <p class="mt-4 font-bold uppercase text-center text-xs tracking-[0.2em] italic">Sempre juntas, em cada riso e cada história</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- RODAPÉ -->
+        <footer class="py-24 text-center border-t border-zinc-800 bg-black">
+            <p class="font-huge text-2xl md:text-5xl text-zinc-500 uppercase">20 / 04 / 2025 — <span class="text-white">∞</span></p>
+        </footer>
+    </div>
 
     <script>
-        function festa() {
-            const defaults = { origin: { y: 0.8 }, zIndex: 999 };
-            confetti({ ...defaults, particleCount: 150, spread: 80, colors: ['#000', '#f472b6', '#fff'] });
+        const dataInicio = new Date(2025, 3, 20, 0, 0, 0);
+
+        function abrirPresente() {
+            const splash = document.getElementById('splash-screen');
+            splash.classList.add('fade-out');
+            setTimeout(() => { festa(); }, 500);
         }
-        window.addEventListener('load', () => {
-            setTimeout(() => { confetti({ particleCount: 30, spread: 40, origin: { y: 0.9 }, colors: ['#000'], disableForReducedMotion: true }); }, 1000);
-        });
+
+        function update() {
+            const agora = new Date();
+            let anos = agora.getFullYear() - dataInicio.getFullYear();
+            let meses = agora.getMonth() - dataInicio.getMonth();
+            let dias = agora.getDate() - dataInicio.getDate();
+
+            if (dias < 0) {
+                meses--;
+                let ultimoMes = new Date(agora.getFullYear(), agora.getMonth(), 0);
+                dias += ultimoMes.getDate();
+            }
+            if (meses < 0) {
+                anos--;
+                meses += 12;
+            }
+
+            document.getElementById('anos').innerText = Math.max(0, anos).toString().padStart(2, '0');
+            document.getElementById('meses').innerText = Math.max(0, meses).toString().padStart(2, '0');
+            document.getElementById('dias').innerText = Math.max(0, dias).toString().padStart(2, '0');
+            document.getElementById('horas').innerText = agora.getHours().toString().padStart(2, '0');
+            document.getElementById('minutos').innerText = agora.getMinutes().toString().padStart(2, '0');
+            document.getElementById('segundos').innerText = agora.getSeconds().toString().padStart(2, '0');
+        }
+
+        setInterval(update, 1000);
+        window.onload = update;
+
+        function festa() {
+            confetti({
+                particleCount: 200,
+                spread: 90,
+                origin: { y: 0.6 },
+                colors: ['#ff0055', '#ffffff', '#ffd700']
+            });
+        }
     </script>
 </body>
 </html>
